@@ -154,8 +154,7 @@ function getInstance(): Auth0Server & { sessionCache: SessionCache } {
 // For creating own instance.
 export const initAuth0: InitAuth0 = (params) => {
   setIsUsingOwnInstance();
-  const { sessionCache, ...publicApi } = _initAuth(params); // eslint-disable-line @typescript-eslint/no-unused-vars
-  return publicApi;
+  return _initAuth(params);
 };
 
 export const _initAuth = (params?: ConfigParameters): Auth0Server & { sessionCache: SessionCache } => {
@@ -209,7 +208,7 @@ export const _initAuth = (params?: ConfigParameters): Auth0Server & { sessionCac
 };
 
 /* c8 ignore start */
-const getSessionCache = () => getInstance().sessionCache;
+export const getSessionCache = (): SessionCache => getInstance().sessionCache;
 export const getSession: GetSession = (...args) => getInstance().getSession(...args);
 export const updateSession: UpdateSession = (...args) => getInstance().updateSession(...args);
 export const getAccessToken: GetAccessToken = (...args) => getInstance().getAccessToken(...args);
