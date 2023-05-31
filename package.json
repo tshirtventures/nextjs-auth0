@@ -3,10 +3,10 @@
   "version": "2.6.0",
   "description": "Next.js SDK for signing in with Auth0",
   "exports": {
-    ".": "./dist/index.js",
-    "./client": "./dist/client/index.js",
-    "./edge": "./dist/edge.js",
-    "./testing": "./dist/helpers/testing.js"
+    ".": "./src/index.ts",
+    "./client": "./src/client/index.ts",
+    "./edge": "./src/edge.ts",
+    "./testing": "./src/helpers/testing.ts"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
