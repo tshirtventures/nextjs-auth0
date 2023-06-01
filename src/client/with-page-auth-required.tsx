@@ -50,17 +50,6 @@ export interface WithPageAuthRequiredOptions {
    * Render a fallback in case of error fetching the user from the profile API route.
    */
   onError?: (error: Error) => JSX.Element;
-
-  /**
-   * ```js
-   * withPageAuthRequired(Profile, {
-   *   loginUrl: '/custom-login'
-   * });
-   * ```
-   *
-   * Add a path to go to for login.
-   */
-  loginUrl?: string;
 }
 
 /**
@@ -94,8 +83,8 @@ export type WithPageAuthRequired = <P extends WithPageAuthRequiredProps>(
  */
 const withPageAuthRequired: WithPageAuthRequired = (Component, options = {}) => {
   return function WithPageAuthRequired(props): JSX.Element {
-    const { loginUrl: defaultLoginUrl } = useConfig();
-    const { returnTo, onRedirecting = defaultOnRedirecting, onError = defaultOnError, loginUrl = defaultLoginUrl } = options;
+    const { returnTo, onRedirecting = defaultOnRedirecting, onError = defaultOnError } = options;
+    const { loginUrl } = useConfig();
     const { user, error, isLoading } = useUser();
 
     useEffect(() => {

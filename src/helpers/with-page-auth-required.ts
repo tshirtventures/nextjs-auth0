@@ -68,7 +68,6 @@ export type WithPageAuthRequiredOptions<
 > = {
   getServerSideProps?: GetServerSideProps<P, Q>;
   returnTo?: string;
-  loginUrl?: string;
 };
 
 /**
@@ -102,10 +101,10 @@ export type WithPageAuthRequired = <
  * @ignore
  */
 export default function withPageAuthRequiredFactory(
-  defaultLoginUrl: string,
+  loginUrl: string,
   getSessionCache: () => SessionCache
 ): WithPageAuthRequired {
-  return ({ getServerSideProps, returnTo, loginUrl = defaultLoginUrl } = {}) =>
+  return ({ getServerSideProps, returnTo } = {}) =>
     async (ctx) => {
       assertCtx(ctx);
       const sessionCache = getSessionCache();
